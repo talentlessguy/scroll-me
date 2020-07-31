@@ -3,6 +3,15 @@ const shrink = () => {
 
   main.style.width = '80vw'
   main.style.height = '80vh'
-  main.style.padding = '30px'
-  main.style.overflow = 'scroll'
+  main.style.overflowY = 'scroll'
+
+  const btn = document.createElement('button')
+
+  btn.innerText = 'Принять участие'
+
+  btn.id = 'join'
+
+  main.scrollTo({ top: 0 })
+
+  main.appendChild(btn)
 }

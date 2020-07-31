@@ -1,8 +1,17 @@
 button {
-    border: solid 4px #000;
-    padding: 10px 20px;
-    background-color: white;
-    font-size: 1.5rem;
-    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
-    font-family: sans-serif;
+  border: solid 4px #000;
+  padding: 1rem 2rem;
+  background-color: white;
+  font-size: 2rem;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+  font-family: sans-serif;
+}
+
+#join {
+  padding: 17px 33px;
+  background: #f6e76a;
+  font-size: 30px;
+  color: #090909;
+  border: 3px solid black;
+  text-decoration: none;
 }
