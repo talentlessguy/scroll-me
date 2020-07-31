@@ -36,3 +36,7 @@ main > div {
   justify-content: center;
   align-items: center;
 }
+
+#learn_more {
+  margin-top: 100px;
+}
