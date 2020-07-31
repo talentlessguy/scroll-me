@@ -4,6 +4,7 @@ import serve from 'serve-handler'
 createServer((req, res) => {
   serve(req, res, {
     directoryListing: false,
+    cleanUrls: true,
     rewrites: [
       {
         source: '/',
