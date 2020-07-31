@@ -1,4 +1,4 @@
 const visit = (x) => {
-  history.pushState({}, 'title', x)
+  history.pushState({}, 'title', `/${x}`)
   location.reload()
 }
