@@ -10,6 +10,14 @@ createServer((req, res) => {
         destination: '/intro/index.html',
       },
       {
+        source: '/app.js',
+        destination: '/intro/app.js',
+      },
+      {
+        source: '/style.css',
+        destination: '/intro/style.css',
+      },
+      {
         source: '/:level',
         destination: '/:level/index.html',
       },
