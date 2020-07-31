@@ -1,9 +1,12 @@
 p {
   position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
   bottom: 0;
   left: 0;
 }
 
 body {
   position: relative;
+  height: 200vh;
 }
