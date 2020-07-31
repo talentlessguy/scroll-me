@@ -15,4 +15,4 @@ createServer((req, res) => {
       },
     ],
   })
-}).listen(3000)
+}).listen(3000, () => console.log(`Started on http://localhost:3000`))
