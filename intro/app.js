@@ -13,7 +13,6 @@ const shrink = () => {
 
   btn.onclick = () => {
     visit('scroll_to_top')
-    location.reload()
   }
 
   main.scrollTo({ top: 0 })
