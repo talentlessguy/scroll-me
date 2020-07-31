@@ -14,6 +14,10 @@ createServer((req, res) => {
         destination: '/intro/app.js',
       },
       {
+        source: '/global.js',
+        destination: '/intro/global.js',
+      },
+      {
         source: '/style.css',
         destination: '/intro/style.css',
       },

@@ -11,6 +11,11 @@ const shrink = () => {
 
   btn.id = 'join'
 
+  btn.onclick = () => {
+    visit('scroll_to_top')
+    location.reload()
+  }
+
   main.scrollTo({ top: 0 })
 
   main.appendChild(btn)
