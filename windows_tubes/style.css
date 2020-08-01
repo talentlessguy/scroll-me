@@ -1,0 +1,37 @@
+#tube {
+  height: calc(100vh - 100px - 2rem - 5px - 4px);
+  width: 200px;
+}
+
+#tube_head {
+  width: 250px;
+  height: 100px;
+}
+
+main {
+  padding: 1rem;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#tube_head,
+#tube {
+  background-color: green;
+  border: 5px solid black;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+}
+
+body {
+  margin: 0;
+}
+
+#metric {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: white;
+}

@@ -1,4 +1,4 @@
-const ANSWER = 126
+aconst ANSWER = 126
 
 const ctrl = document.getElementById('ctrl')
 
@@ -9,6 +9,8 @@ let count = 0
 let cmdCount = 0
 
 let expr = ''
+
+a// 63 * 2
 
 for (const key of keys) {
   const btn = document.createElement('button')
@@ -21,14 +23,24 @@ for (const key of keys) {
 
     if (key === '=') {
       count += eval(expr)
+
+      if (count === ANSWER) {
+        const join = document.createElement('button')
+
+        join.id = 'join'
+
+        join.innerText = 'Принять участие'
+
+        join.onclick = () => {
+          visit('windows_tubes')
+        }
+
+        document.body.appendChild(join)
+      }
     } else if (key === 0 || key === 1 || cmdCount > 4) {
       for (const child of Array.from(ctrl.children)) {
         child.style.transform = `translate(0, 100vh) rotate(-70deg)`
       }
-    } else if (count === ANSWER) {
-      const join = document.createElement('button')
-
-      join.id = 'join'
     } else {
       expr += key
     }
@@ -37,4 +49,8 @@ for (const key of keys) {
   }
 
   ctrl.appendChild(btn)
+}
+
+for (const el of new Array(1000).keys()) {
+  document.getElementById('code').textContent += ` 126 `
 }

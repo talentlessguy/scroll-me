@@ -5,6 +5,7 @@
 }
 
 #calc {
+  background-color: white;
   padding: 1rem;
   border: 5px solid black;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
@@ -39,4 +40,18 @@ body,
 html,
 main {
   overflow-y: hidden;
+}
+
+#join {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: -250px;
+}
+
+#code {
+  position: absolute;
+  font-size: 2rem;
+  z-index: -1;
+  font-style: italic;
 }
