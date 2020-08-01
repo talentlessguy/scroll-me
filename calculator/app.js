@@ -1,3 +1,5 @@
+scrollTo({ top: 0 })
+
 const ANSWER = 126
 
 const ctrl = document.getElementById('ctrl')
@@ -51,6 +53,6 @@ for (const key of keys) {
   ctrl.appendChild(btn)
 }
 
-for (const el of new Array(1000).keys()) {
+for (let i = 0; i < 1000; i++) {
   document.getElementById('code').textContent += ` 126 `
 }
