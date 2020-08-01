@@ -40,7 +40,7 @@ document.getElementById('submit').onclick = () => {
 
     err.id = 'error'
 
-    err.textContent = `ты настолько тупой?`
+    err.textContent = `подумой`
 
     cont.appendChild(err)
 

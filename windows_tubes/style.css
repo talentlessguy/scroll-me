@@ -18,7 +18,7 @@ main {
 
 #tube_head,
 #tube {
-  background-color: green;
+  background-color: rgba(0, 128, 0, 0.644);
   border: 5px solid black;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
   z-index: 3;
@@ -26,6 +26,11 @@ main {
 
 body {
   margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #metric {
@@ -37,7 +42,6 @@ body {
 }
 
 #join {
-  transition: 0.6s;
-  transform: translateX(calc((100vw - 250px) / 2 - 100px));
+  transition: 2s;
   font-size: 1rem !important;
 }

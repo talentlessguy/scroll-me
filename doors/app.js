@@ -162,6 +162,8 @@ for (let door of doorMeshes) scene.add(door)
 
 const raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10)
 
+let visited = false
+
 function animate() {
   requestAnimationFrame(animate)
 
@@ -169,9 +171,21 @@ function animate() {
     raycaster.ray.origin.copy(controls.getObject().position)
     raycaster.ray.origin.y -= 4
 
-    var intersections = raycaster.intersectObjects(doorObjects)
+    const pos = controls.getObject().position
 
-    console.log(intersections)
+    console.log(pos)
+
+    if (!visited) {
+      if (pos.x >= -12.5 && pos.x <= -8 && pos.z <= 0) {
+        visited = true
+        visit('')
+      } else if (pos.z <= 0 && pos.x <= 2) {
+        visited = true
+        visit('contest')
+      }
+    }
+
+    var intersections = raycaster.intersectObjects(doorObjects)
 
     var onObject = intersections.length > 0
 
@@ -212,11 +226,6 @@ function animate() {
 }
 
 animate()
-/* 
-setTimeout(() => {
-  visit('contest')
-}, 7500)
- */
 
 function render() {
   requestAnimationFrame(render)

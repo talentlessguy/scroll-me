@@ -28418,13 +28418,24 @@ vec4 envMapTexelToLinear(vec4 color) {
   for (let door of doorMeshes)
     scene.add(door);
   const raycaster = new Raycaster(new Vector3(), new Vector3(0, -1, 0), 0, 10);
+  let visited = false;
   function animate() {
     requestAnimationFrame(animate);
     if (controls.isLocked === true) {
       raycaster.ray.origin.copy(controls.getObject().position);
       raycaster.ray.origin.y -= 4;
+      const pos = controls.getObject().position;
+      console.log(pos);
+      if (!visited) {
+        if (pos.x >= -12.5 && pos.x <= -8 && pos.z <= 0) {
+          visited = true;
+          visit("");
+        } else if (pos.z <= 0) {
+          visited = true;
+          visit("contest");
+        }
+      }
       var intersections = raycaster.intersectObjects(doorObjects);
-      console.log(intersections);
       var onObject = intersections.length > 0;
       var time = performance.now();
       var delta = (time - prevTime) / 1e3;

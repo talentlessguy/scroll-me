@@ -17,8 +17,10 @@ if (!getQueryVariable('w')) {
   Заспавнить окно
 </button>`
 
-  document.getElementById('spawn').onclick = () => {
+  document.getElementById('spawn').onclick = (e) => {
     idx++
+
+    e.currentTarget.textContent = 'Заспавнить ещё окно'
 
     const window = open(`${location.pathname}?w=${idx}`, `Окно ${idx}`, `height=450,width=400`)
     windows.push(window)
@@ -29,6 +31,7 @@ if (!getQueryVariable('w')) {
         const s = windows[1]
 
         if (f.screenX === s.screenX) {
+          windows[0].document.body.style.overflow = 'hidden'
           if (!windows[0].document.getElementById('join')) {
             const btn = document.createElement('button')
             btn.innerText = 'Принять участие'
@@ -38,7 +41,7 @@ if (!getQueryVariable('w')) {
             windows[0].document.body.prepend(btn)
 
             setTimeout(() => {
-              btn.style.transform = `translate(calc((100vw - 250px) / 2 - 100px), 80vh)`
+              btn.style.transform = `translate(0, 200vh)`
 
               if (!windows[1].document.getElementById('join')) {
                 const btn2 = document.createElement('button')
@@ -46,10 +49,11 @@ if (!getQueryVariable('w')) {
 
                 btn2.id = 'join'
 
-                btn.onclick = () => visit('flipped')
-                setTimeout(() => {
-                  windows[1].document.body.append(btn)
-                }, 1000)
+                btn2.onclick = () => visit('flipped')
+
+                btn2.style.transition = '2s'
+                btn2.style.transform = `translate(0, 120vh)`
+                windows[1].document.body.prepend(btn2)
               }
             }, 100)
           }
@@ -87,19 +91,6 @@ if (!getQueryVariable('w')) {
         document.querySelector('main').appendChild(tubeHead)
         document.querySelector('main').appendChild(tube)
       }
-
-      let metric = document.querySelector('#metric')
-
-      if (!metric) {
-        metric = document.createElement('div')
-        metric.id = 'metric'
-      }
-
-      metric.innerHTML = `
-      X: ${newX}
-      Y: ${newY}
-      `
-      document.querySelector('main').appendChild(metric)
     } else if (getQueryVariable('w') === '2') {
       // X: 960, Y: 600
       if (!document.querySelector('main').firstChild) {
@@ -114,19 +105,6 @@ if (!getQueryVariable('w')) {
         document.querySelector('main').appendChild(tube)
         document.querySelector('main').appendChild(tubeHead)
       }
-
-      let metric = document.querySelector('#metric')
-
-      if (!metric) {
-        metric = document.createElement('div')
-        metric.id = 'metric'
-      }
-
-      metric.innerHTML = `
-      X: ${newX}
-      Y: ${newY}
-      `
-      document.querySelector('main').appendChild(metric)
     }
   })
 }
