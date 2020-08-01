@@ -162,27 +162,16 @@ for (let door of doorMeshes) scene.add(door)
 
 const raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10)
 
-function detectCollisionCubes(object1, object2) {
-  object1.updateMatrixWorld()
-  object2.updateMatrixWorld()
-
-  var box1 = object1.geometry.boundingBox.clone()
-  box1.applyMatrix4(object1.matrixWorld)
-
-  var box2 = object2.geometry.boundingBox.clone()
-  box2.applyMatrix4(object2.matrixWorld)
-
-  return box1.intersectsBox(box2)
-}
-
 function animate() {
   requestAnimationFrame(animate)
 
   if (controls.isLocked === true) {
     raycaster.ray.origin.copy(controls.getObject().position)
-    raycaster.ray.origin.y -= 10
+    raycaster.ray.origin.y -= 4
 
-    var intersections = raycaster.intersectObjects(objects)
+    var intersections = raycaster.intersectObjects(doorObjects)
+
+    console.log(intersections)
 
     var onObject = intersections.length > 0
 
@@ -211,9 +200,9 @@ function animate() {
 
     controls.getObject().position.y += velocity.y * delta // new behavior
 
-    if (controls.getObject().position.y < 10) {
+    if (controls.getObject().position.y < 4) {
       velocity.y = 0
-      controls.getObject().position.y = 10
+      controls.getObject().position.y = 4
 
       canJump = true
     }

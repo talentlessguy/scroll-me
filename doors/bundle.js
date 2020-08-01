@@ -28299,35 +28299,29 @@ vec4 envMapTexelToLinear(vec4 color) {
   PointerLockControls2.prototype.constructor = PointerLockControls2;
 
   // app.js
-  var WIDTH = window.innerWidth - 10;
-  var HEIGHT = window.innerHeight - 10;
-  var renderer = new WebGLRenderer({antialias: true});
+  let WIDTH = window.innerWidth - 10;
+  let HEIGHT = window.innerHeight - 10;
+  let renderer = new WebGLRenderer({antialias: true});
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setClearColor(14540253, 1);
   document.body.appendChild(renderer.domElement);
-  var scene = new Scene();
-  var camera = new PerspectiveCamera(70, WIDTH / HEIGHT);
+  let scene = new Scene();
+  let camera = new PerspectiveCamera(70, WIDTH / HEIGHT);
   camera.position.z = 25;
   camera.rotation.x = -0.2;
   scene.add(new AmbientLight("white", 0.4));
   const light = new DirectionalLight("white", 0.6);
   light.position.set(0, 0, 10);
   scene.add(light);
-  var controls = new PointerLockControls2(camera, renderer.domElement);
+  let controls = new PointerLockControls2(camera, renderer.domElement);
   scene.add(camera);
   document.body.onclick = () => controls.lock();
   scene.add(controls.getObject());
-  function render() {
-    requestAnimationFrame(render);
-    renderer.render(scene, camera);
-  }
-  render();
   const makeDoor = (label, position) => {
     const door = new Group();
-    var doorGeometry = new BoxGeometry(6, 10, 3);
-    const texture = new TextureLoader().load("/doors/texture.jpg");
-    var basicMaterial = new MeshPhongMaterial({map: texture});
-    var cube = new Mesh(doorGeometry, basicMaterial);
+    let doorGeometry = new BoxGeometry(6, 10, 0.5);
+    let basicMaterial = new MeshPhongMaterial({map: new TextureLoader().load("/doors/texture.jpg")});
+    let cube = new Mesh(doorGeometry, basicMaterial);
     door.add(cube);
     const textGeom = new TextGeometry(label, {
       font: new Font(optimer_regular_typeface_default),
@@ -28366,15 +28360,15 @@ vec4 envMapTexelToLinear(vec4 color) {
     doorObjects.push(door);
     doorMeshes.push(door);
   }
-  var prevTime = performance.now();
-  var velocity = new Vector3();
-  var direction = new Vector3();
-  var moveForward = false;
-  var moveBackward = false;
-  var moveLeft = false;
-  var moveRight = false;
-  var canJump = false;
-  var onKeyDown = function(event) {
+  let prevTime = performance.now();
+  let velocity = new Vector3();
+  let direction = new Vector3();
+  let moveForward = false;
+  let moveBackward = false;
+  let moveLeft = false;
+  let moveRight = false;
+  let canJump = false;
+  let onKeyDown = function(event) {
     switch (event.keyCode) {
       case 38:
       case 87:
@@ -28399,7 +28393,7 @@ vec4 envMapTexelToLinear(vec4 color) {
         break;
     }
   };
-  var onKeyUp = function(event) {
+  let onKeyUp = function(event) {
     switch (event.keyCode) {
       case 38:
       case 87:
@@ -28428,7 +28422,7 @@ vec4 envMapTexelToLinear(vec4 color) {
     requestAnimationFrame(animate);
     if (controls.isLocked === true) {
       raycaster.ray.origin.copy(controls.getObject().position);
-      raycaster.ray.origin.y -= 10;
+      raycaster.ray.origin.y -= 4;
       var intersections = raycaster.intersectObjects(doorObjects);
       console.log(intersections);
       var onObject = intersections.length > 0;
@@ -28451,7 +28445,7 @@ vec4 envMapTexelToLinear(vec4 color) {
       controls.moveRight(-velocity.x * delta);
       controls.moveForward(-velocity.z * delta);
       controls.getObject().position.y += velocity.y * delta;
-      if (controls.getObject().position.y < 10) {
+      if (controls.getObject().position.y < 4) {
         velocity.y = 0;
         controls.getObject().position.y = 4;
         canJump = true;
@@ -28459,21 +28453,10 @@ vec4 envMapTexelToLinear(vec4 color) {
       prevTime = time;
     }
   }
-  const btn = new Group();
-  const btnGeom = new BoxGeometry(16, 8, 2);
-  const btnMaterial = new MeshPhongMaterial({color: "yellow"});
-  const btnTextGeom = new TextGeometry("Prinyat Uchastie", {
-    size: 1,
-    font: new Font(optimer_regular_typeface_default),
-    height: 0.3
-  });
-  const btnMesh = new Mesh(btnGeom, btnMaterial);
-  btn.add(btnMesh);
-  const textMesh = new Mesh(btnTextGeom, new MeshPhongMaterial({color: "black"}));
-  textMesh.position.z = 1;
-  textMesh.position.x = -4;
-  btn.add(textMesh);
-  btn.position.z = 100;
-  scene.add(btn);
   animate();
+  function render() {
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+  }
+  render();
 })();
