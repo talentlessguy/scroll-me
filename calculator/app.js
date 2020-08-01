@@ -1,4 +1,4 @@
-aconst ANSWER = 126
+const ANSWER = 126
 
 const ctrl = document.getElementById('ctrl')
 
@@ -10,7 +10,7 @@ let cmdCount = 0
 
 let expr = ''
 
-a// 63 * 2
+a // 63 * 2
 
 for (const key of keys) {
   const btn = document.createElement('button')
