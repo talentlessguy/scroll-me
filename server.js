@@ -1,6 +1,8 @@
 import { createServer } from 'http'
 import serve from 'serve-handler'
 
+const PORT = 7777
+
 createServer((req, res) => {
   serve(req, res, {
     directoryListing: false,
@@ -28,4 +30,4 @@ createServer((req, res) => {
       },
     ],
   })
-}).listen(3000, () => console.log(`Started on http://localhost:3000`))
+}).listen(PORT, () => console.log(`Started on http://localhost:${PORT}`))

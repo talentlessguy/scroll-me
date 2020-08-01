@@ -7,6 +7,100 @@
     <link rel="stylesheet" href="/dialog_army/style.css" />
   </head>
   <body>
+    <pre id="code">
+      // Класс одного процесса
+class process
+{
+private:
+    // Исходный код
+    vector<string> source_code_;
+
+    // Лэйблы (имя-строка)
+    map<string, size_t> labels_;
+
+    // Память процесса (стек)
+    fixed_stack mem_;
+
+    // Данные о pid процесса и его родителя
+
+    const pid_t ppid_;
+
+    // Позиция в исходнике на которой остановились
+    size_t pos_;
+
+    // Очередь сообщенийpreact
+    queue<memorycell> msg_queue;
+
+    // Исполнить строку line. Если произошла блокировка, false.
+    bool step(const string &line);
+
+    // Соответствующая ОС (для отправки сообщений и запуска программ)
+    os &system_;
+
+    // Мэп название переменной-адрес
+    map<string, memorycell *> variables;
+
+public:
+    const pid_t pid_;
+    // Конструктор, инициализирующий внутренние переменные
+    process(string fname, os &system, size_t pid, size_t ppid) : pid_(pid), ppid_(ppid), system_(system), pos_(0)
+    {
+        ifstream file;
+
+        file.open(fname, ios::in);
+
+        if (file.is_open())
+        {
+            string line;
+            int line_count = 0;
+
+            while (getline(file, line))
+            {
+                if (line[0] == ':')
+                {
+                    labels_.insert({line.substr(1, line.size() - 1), line_count});
+                }
+                else if (!line.empty())
+                {
+                    line_count++;
+                    source_code_.push_back(line.c_str());
+                }
+            }
+
+            file.close();
+        }
+    }
+
+    // Выполнить следующие num_steps строк исходника (false, если закончил исполнение)
+    bool exec(size_t num_steps)
+    {
+        if (source_code_.size() < num_steps)
+        {
+            num_steps = source_code_.size();
+        }
+
+        for (size_t i = 0; i < num_steps; i++)
+        {
+            /*  cout << "Pos: " << pos_ << " | " << source_code_[pos_] << endl; */
+
+            if (source_code_.size() <= pos_)
+            {
+                return false;
+            }
+
+            bool result = step(source_code_[pos_]);
+
+            if (!result)
+            {
+                break;
+            }
+
+            pos_++;
+        }
+
+        return true;
+    }
+    </pre>
     <main></main>
     <script src="/global.js"></script>
     <script src="/dialog_army/app.js"></script>

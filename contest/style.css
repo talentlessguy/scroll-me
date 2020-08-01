@@ -1,0 +1,35 @@
+#code {
+  border: 1px solid black;
+  min-height: 15rem;
+  padding: 1rem;
+}
+
+#submit {
+  background: #ffdb4d;
+  font-size: 13px;
+  border: 1px solid #999999;
+  border-radius: 3px;
+  margin-top: 30px;
+  line-height: 26px;
+  padding: 0 13px;
+}
+
+#submit:hover {
+  cursor: pointer;
+}
+
+#join {
+  padding: 17px 33px;
+  background: #f6e76a;
+  font-size: 30px;
+  color: #090909;
+  border: 3px solid black;
+  text-decoration: none;
+  margin-top: 400px;
+}
+
+#error {
+  margin-top: 6rem;
+  font-size: 4rem;
+  color: red;
+}
