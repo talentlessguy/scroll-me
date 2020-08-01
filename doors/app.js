@@ -249,5 +249,5 @@ scene.add(btn)
 animate()
 
 setTimeout(() => {
-  visit('clock')
+  visit('contest')
 }, 7500)

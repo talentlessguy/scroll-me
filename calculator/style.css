@@ -1,0 +1,42 @@
+#ctrl {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 1rem;
+}
+
+#calc {
+  padding: 1rem;
+  border: 5px solid black;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+}
+
+#ctrl button:hover {
+  background-color: yellow;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+output {
+  font-family: monospace;
+  border: 5px solid black;
+  margin-bottom: 1rem;
+  display: block;
+  padding: 0.5rem;
+  font-size: 2rem;
+}
+
+button {
+  transition: 1s;
+}
+
+body,
+html,
+main {
+  overflow-y: hidden;
+}

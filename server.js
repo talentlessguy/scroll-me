@@ -1,7 +1,7 @@
 import { createServer } from 'http'
 import serve from 'serve-handler'
 
-const PORT = 7777
+const PORT = 3000
 
 createServer((req, res) => {
   serve(req, res, {
