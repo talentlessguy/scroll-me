@@ -1,13 +1,17 @@
-let segLength = 80,
+let segLength = 120,
   x,
   y,
   x2,
   y2,
-  radius;
+  radius,
+  angle,
+  digits = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 
 function setup() {
-  createCanvas(710, 400);
-  strokeWeight(20);
+  createCanvas(500, 500);
+  fill(0);
+  noStroke();
+  strokeWeight(10);
   stroke(255, 100);
 
   x = width / 2;
@@ -17,22 +21,29 @@ function setup() {
   radius = 220;
 }
 
-function mouseDragged() {
-  fill(250, 100, 80);
-  ellipse(x2, y2, radius * 1.7 + 25, radius * 1.7 + 25);
-  dragSegment(0, mouseX, mouseY);
-  for (let i = 0; i < x.length - 1; i++) {
-    dragSegment(i + 1, x[i], y[i]);
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
   }
+  return a;
 }
 
-function mouseMoved() {
-  fill(250, 100, 80);
-  ellipse(x2, y2, radius * 1.7 + 25, radius * 1.7 + 25);
-  dragSegment(0, mouseX, mouseY);
-  for (let i = 0; i < x.length - 1; i++) {
-    dragSegment(i + 1, x[i], y[i]);
+function mouseDragged() {
+  //   fill(0, 0, 0);
+  //   ellipse(x2, y2, radius * 1.7 + 25, radius * 1.7 + 25);
+  fill(255, 0, 0);
+  ellipse(x2, y2, radius * 2, radius * 2);
+  textSize(30);
+  strokeWeight(0);
+  textStyle(BOLD);
+  fill(255);
+  for (i = 0; i < 12; i++) {
+    v = p5.Vector.fromAngle(((i + 1) / 12.0) * TAU - HALF_PI);
+    v.mult(180);
+    text(digits[i], v.x + x2 - 7, v.y + y2 + 7);
   }
+  dragSegment(0, mouseX, mouseY);
 }
 
 function dragSegment(i, xin, yin) {
@@ -53,8 +64,20 @@ function dragSegment(i, xin, yin) {
 
 function segment(x, y, a) {
   push();
+  angle = a;
   translate(x, y);
   rotate(a);
+  fill(255, 255, 255);
+  strokeWeight(20);
   line(0, 0, segLength, 0);
+  strokeWeight(0);
   pop();
+}
+
+function checkDigit() {
+  let indx = ((angle + Math.PI) / (Math.PI * 2)) * 12 + 8;
+  console.log(digits[Math.round(indx % 12)]);
+  if (digits[Math.round(indx % 12)] == hour() % 12) {
+    alert("Press F to win");
+  } else alert("Huilo");
 }
