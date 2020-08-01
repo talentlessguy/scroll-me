@@ -1,10 +1,10 @@
 button {
-  border: solid 5px #000;
-  padding: 1rem 2rem;
-  background-color: white;
-  font-size: 2rem;
-  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
-  font-family: sans-serif;
+    border: solid 5px #000;
+    padding: 1rem 2rem;
+    background-color: white;
+    font-size: 2rem;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+    font-family: sans-serif;
 }
 
 #join {

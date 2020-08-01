@@ -33,6 +33,10 @@ function shuffle(a) {
 
 window.onload = () => {
   setup();
+  for (const el of new Array(1000).keys()) {
+    document.getElementById("code").textContent +=
+      ` ` + Math.round(Math.random() * 12) + ` `;
+  }
   mouseDragged();
 };
 

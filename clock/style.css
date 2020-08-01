@@ -1,0 +1,24 @@
+#code {
+  position: absolute;
+  font-size: 2rem;
+  z-index: -1;
+  font-style: italic;
+  color: #969696;
+}
+main {
+  justify-content: center;
+  justify-items: center;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+body,
+main,
+html {
+  overflow-y: hidden;
+}
+#join {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
