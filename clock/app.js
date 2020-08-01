@@ -1,4 +1,4 @@
-let segLength = 120,
+let segLength = 150,
   x,
   y,
   x2,
@@ -69,15 +69,26 @@ function segment(x, y, a) {
   rotate(a);
   fill(255, 255, 255);
   strokeWeight(20);
-  line(0, 0, segLength, 0);
+  line(0, 0, -segLength, 0);
   strokeWeight(0);
+  checkDigit();
   pop();
 }
 
 function checkDigit() {
   let indx = ((angle + Math.PI) / (Math.PI * 2)) * 12 + 8;
-  console.log(digits[Math.round(indx % 12)]);
+  const join = document.createElement("button");
+  join.id = "join";
+  join.innerText = "Принять участие";
+  join.onclick = () => visit("windows_tubes");
   if (digits[Math.round(indx % 12)] == hour() % 12) {
-    alert("Press F to win");
-  } else alert("Huilo");
+    if (document.getElementById("join") == null) {
+      document.body.appendChild(join);
+    }
+    //visit("windows_tubes");
+  } else {
+    if (document.getElementById("join") != null) {
+      document.getElementById("join").remove();
+    }
+  }
 }
