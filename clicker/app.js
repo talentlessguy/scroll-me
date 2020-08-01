@@ -5,7 +5,7 @@ const inc = () => {
     const btn = document.createElement('button')
     btn.id = 'join'
     btn.innerText = 'Принять участие'
-    btn.onclick = () => visit('dialog_army')
+    btn.onclick = () => visit('doors')
     document.body.appendChild(btn)
   }
   counter++

@@ -84,7 +84,7 @@ if (!getQueryVariable('w')) {
 
         tube.id = 'tube'
 
-        tube.style.backgroundImage = `url(/windows_tubes/toilet.jpg)`
+        tube.style.background = `url(/windows_tubes/toilet.png)`
         tube.style.backgroundRepeat = 'no-repeat'
         tube.style.backgroundSize = 'contain'
 
@@ -100,6 +100,13 @@ if (!getQueryVariable('w')) {
         const tubeHead = document.createElement('div')
 
         tubeHead.id = 'tube_head'
+
+        document.body.style.alignContent = `align-self`
+        tube.style.background = `rgba(0, 128, 0, 0.644)`
+        tube.style.height = `200px`
+        tubeHead.style.background = `rgba(0, 128, 0, 0.644)`
+        tube.style.border = `5px solid black`
+        tubeHead.style.border = `5px solid black`
 
         document.querySelector('main').appendChild(tube)
         document.querySelector('main').appendChild(tubeHead)

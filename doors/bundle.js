@@ -28429,8 +28429,8 @@ vec4 envMapTexelToLinear(vec4 color) {
       if (!visited) {
         if (pos.x >= -12.5 && pos.x <= -8 && pos.z <= 0) {
           visited = true;
-          visit("");
-        } else if (pos.z <= 0) {
+          visit("dialog_army");
+        } else if (pos.z <= 0 && pos.x <= 2) {
           visited = true;
           visit("contest");
         }
