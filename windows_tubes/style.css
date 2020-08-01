@@ -1,10 +1,10 @@
 #tube {
   height: calc(100vh - 100px - 2rem - 5px - 4px);
-  width: 200px;
+  width: 300px;
 }
 
 #tube_head {
-  width: 250px;
+  width: 400px;
   height: 100px;
 }
 

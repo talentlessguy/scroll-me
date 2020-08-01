@@ -84,11 +84,10 @@ if (!getQueryVariable('w')) {
 
         tube.id = 'tube'
 
-        const tubeHead = document.createElement('div')
+        tube.style.backgroundImage = `url(/windows_tubes/toilet.jpg)`
+        tube.style.backgroundRepeat = 'no-repeat'
+        tube.style.backgroundSize = 'contain'
 
-        tubeHead.id = 'tube_head'
-
-        document.querySelector('main').appendChild(tubeHead)
         document.querySelector('main').appendChild(tube)
       }
     } else if (getQueryVariable('w') === '2') {
