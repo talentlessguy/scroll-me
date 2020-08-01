@@ -13,10 +13,10 @@ class process
 {
 private:
     // Исходный код
-    vector<string> source_code_;
+    vector&lt;string&gt; source_code_;
 
     // Лэйблы (имя-строка)
-    map<string, size_t> labels_;
+    map&lt;string, size_t&gt; labels_;
 
     // Память процесса (стек)
     fixed_stack mem_;
@@ -29,7 +29,7 @@ private:
     size_t pos_;
 
     // Очередь сообщенийpreact
-    queue<memorycell> msg_queue;
+    queue&lt;memorycell&gt; msg_queue;
 
     // Исполнить строку line. Если произошла блокировка, false.
     bool step(const string &line);
@@ -38,7 +38,7 @@ private:
     os &system_;
 
     // Мэп название переменной-адрес
-    map<string, memorycell *> variables;
+    map&lt;string, memorycell *&gt; variables;
 
 public:
     const pid_t pid_;
@@ -74,16 +74,16 @@ public:
     // Выполнить следующие num_steps строк исходника (false, если закончил исполнение)
     bool exec(size_t num_steps)
     {
-        if (source_code_.size() < num_steps)
+        if (source_code_.size() &lt; num_steps)
         {
             num_steps = source_code_.size();
         }
 
-        for (size_t i = 0; i < num_steps; i++)
+        for (size_t i = 0; i &lt; num_steps; i++)
         {
-            /*  cout << "Pos: " << pos_ << " | " << source_code_[pos_] << endl; */
+            /*  cout &lt;&lt; "Pos: " &lt;&lt; pos_ &lt;&lt; " | " &lt;&lt; source_code_[pos_] &lt;&lt; endl; */
 
-            if (source_code_.size() <= pos_)
+            if (source_code_.size() &lt;= pos_)
             {
                 return false;
             }
