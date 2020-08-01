@@ -23,14 +23,27 @@ if (!getQueryVariable('w')) {
     const window = open(`${location.pathname}?w=${idx}`, `Окно ${idx}`, `height=450,width=400`)
     windows.push(window)
 
-    setInterval(() => {
-      const f = windows[0]
-      const s = windows[1]
+    if (windows.length === 2) {
+      setInterval(() => {
+        const f = windows[0]
+        const s = windows[1]
 
-      if (f.screenY >= 50 && f.screenY <= 80 && f.screenX >= 745 && f.screenY <= 765) {
-        if (s.screen)
-      }
-    })
+        console.log(`First: ${f.screenY}`)
+        console.log(`Second: ${s.screnY}`)
+
+        if (false) {
+          const btn = document.createElement('button')
+          btn.id = 'join'
+          btn.onclick = () => visit('flipped')
+          btn.disabled = true
+          document.body.prepend(btn)
+
+          setTimeout(() => {
+            btn.style.transform = `translate(100vh) rotate(40deg)`
+          }, 100)
+        }
+      })
+    }
   }
 } else {
   let oldX = window.screenX,

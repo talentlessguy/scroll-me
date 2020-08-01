@@ -35,3 +35,7 @@ body {
   padding: 1rem;
   background-color: white;
 }
+
+#join {
+  transition: 0.6s;
+}
