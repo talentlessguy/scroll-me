@@ -1,61 +1,34 @@
-let cx, cy;
-let secondsRadius;
-let minutesRadius;
-let hoursRadius;
-let clockDiameter;
-
-const s = 10;
-const m = 8;
-const h = 0.1;
+let segLength = 80,
+  x,
+  y,
+  x2,
+  y2,
+  radius;
 
 function setup() {
-  createCanvas(720, 400);
-  stroke(255);
+  createCanvas(710, 400);
+  strokeWeight(20);
+  stroke(255, 100);
 
-  radius = min(width, height) / 2;
-  secondsRadius = radius * 0.71;
-  minutesRadius = radius * 0.6;
-  hoursRadius = radius * 0.5;
-  clockDiameter = radius * 1.7;
-
-  cx = width / 2;
-  cy = height / 2;
-}
-
-function draw() {
-  //background(230);
-  // Draw the clock background
-
-  // Angles for sin() and cos() start at 3 o'clock;
-  // subtract HALF_PI to make them start at the top
-
-  const s = 10;
-  //console.log(s);
-  const m = 8;
-  const h = 0.1;
-
-  // Clock lines
-  /*stroke(255);
-  strokeWeight(1);
-  line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
-  strokeWeight(2);
-  line(cx, cy, cx + cos(m) * minutesRadius, cy + sin(m) * minutesRadius);
-  strokeWeight(4);
-  line(cx, cy, cx + cos(h) * hoursRadius, cy + sin(h) * hoursRadius);*/
-
-  // Draw the minute ticks
-  strokeWeight(2);
-  beginShape(POINTS);
-  for (let a = 0; a < 360; a += 6) {
-    let angle = radians(a);
-    let x = cx + cos(angle) * secondsRadius;
-    let y = cy + sin(angle) * secondsRadius;
-    vertex(x, y);
-  }
-  endShape();
+  x = width / 2;
+  y = height / 2;
+  x2 = x;
+  y2 = y;
+  radius = 220;
 }
 
 function mouseDragged() {
+  fill(250, 100, 80);
+  ellipse(x2, y2, radius * 1.7 + 25, radius * 1.7 + 25);
+  dragSegment(0, mouseX, mouseY);
+  for (let i = 0; i < x.length - 1; i++) {
+    dragSegment(i + 1, x[i], y[i]);
+  }
+}
+
+function mouseMoved() {
+  fill(250, 100, 80);
+  ellipse(x2, y2, radius * 1.7 + 25, radius * 1.7 + 25);
   dragSegment(0, mouseX, mouseY);
   for (let i = 0; i < x.length - 1; i++) {
     dragSegment(i + 1, x[i], y[i]);
@@ -63,35 +36,25 @@ function mouseDragged() {
 }
 
 function dragSegment(i, xin, yin) {
-  background(0, 0, 0);
-  dx = mouseX - cx;
-  dy = mouseY - cy;
+  dx = mouseX - x;
+  dy = mouseY - y;
   angle1 = atan2(dy, dx);
 
-  tx = mouseX - cos(angle1) * hoursRadius;
-  ty = mouseY - sin(angle1) * hoursRadius;
-  dx = tx - cx;
-  dy = ty - cy;
+  tx = mouseX - cos(angle1) * segLength;
+  ty = mouseY - sin(angle1) * segLength;
+  dx = tx - x2;
+  dy = ty - y2;
   angle2 = atan2(dy, dx);
-  x = cx + cos(angle2) * hoursRadius;
-  y = cy + sin(angle2) * hoursRadius;
+  x = x2 + cos(angle2) * segLength;
+  y = y2 + sin(angle2) * segLength;
 
-  segment(x, y, angle1);
-  segment(cx, cy, angle2);
+  segment(x, y, angle2);
 }
 
 function segment(x, y, a) {
-  noStroke();
-  fill(0, 0, 0);
-  ellipse(cx + 2, cy + 2, clockDiameter + 20, clockDiameter + 20);
-  //fill(200, 200, 200);
-  //ellipse(cx, cy, clockDiameter + 25, clockDiameter + 25);
-  fill(255, 0, 0);
-  ellipse(cx, cy, clockDiameter, clockDiameter);
   push();
-  fill(0, 0, 200);
   translate(x, y);
   rotate(a);
-  line(cx, cy, cx + cos(h) * hoursRadius, cy + sin(h) * hoursRadius);
+  line(0, 0, segLength, 0);
   pop();
 }
