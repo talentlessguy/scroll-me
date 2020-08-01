@@ -13,6 +13,8 @@ function setup() {
   noStroke();
   strokeWeight(10);
   stroke(255, 100);
+  fill(255, 0, 0);
+  ellipse(x2, y2, radius * 2, radius * 2);
 
   x = width / 2;
   y = height / 2;
@@ -28,6 +30,11 @@ function shuffle(a) {
   }
   return a;
 }
+
+window.onload = () => {
+  setup();
+  mouseDragged();
+};
 
 function mouseDragged() {
   //   fill(0, 0, 0);
