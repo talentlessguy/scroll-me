@@ -3,17 +3,17 @@ import font from 'three/examples/fonts/optimer_regular.typeface.json'
 import { AmbientLight, DirectionalLight } from 'three'
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls'
 
-var WIDTH = window.innerWidth - 10
-var HEIGHT = window.innerHeight - 10
+let WIDTH = window.innerWidth - 10,
+  HEIGHT = window.innerHeight - 10
 
-var renderer = new THREE.WebGLRenderer({ antialias: true })
+let renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setSize(WIDTH, HEIGHT)
 renderer.setClearColor(0xdddddd, 1)
 document.body.appendChild(renderer.domElement)
 
-var scene = new THREE.Scene()
+let scene = new THREE.Scene()
 
-var camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT)
+let camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT)
 camera.position.z = 25
 camera.rotation.x = -0.2
 
@@ -25,7 +25,7 @@ light.position.set(0, 0, 10)
 
 scene.add(light)
 
-var controls = new PointerLockControls(camera, renderer.domElement)
+let controls = new PointerLockControls(camera, renderer.domElement)
 
 scene.add(camera)
 
@@ -33,27 +33,20 @@ document.body.onclick = () => controls.lock()
 
 scene.add(controls.getObject())
 
-function render() {
-  requestAnimationFrame(render)
-  renderer.render(scene, camera)
-}
-render()
-
 const makeDoor = (label, position) => {
   const door = new THREE.Group()
 
-  var doorGeometry = new THREE.BoxGeometry(6, 10, 3)
+  let doorGeometry = new THREE.BoxGeometry(6, 10, 0.5)
 
-  var basicMaterial = new THREE.MeshPhongMaterial({ color: '#AC6C48' })
+  let basicMaterial = new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load('/doors/texture.jpg') })
 
-  var cube = new THREE.Mesh(doorGeometry, basicMaterial)
+  let cube = new THREE.Mesh(doorGeometry, basicMaterial)
 
   door.add(cube)
 
   const textGeom = new THREE.TextGeometry(label, {
     font: new THREE.Font(font),
     size: 1,
-
     height: 0.3,
   })
 
@@ -99,17 +92,17 @@ for (const d of doors) {
   doorMeshes.push(door)
 }
 
-var prevTime = performance.now()
-var velocity = new THREE.Vector3()
-var direction = new THREE.Vector3()
+let prevTime = performance.now()
+let velocity = new THREE.Vector3()
+let direction = new THREE.Vector3()
 
-var moveForward = false
-var moveBackward = false
-var moveLeft = false
-var moveRight = false
-var canJump = false
+let moveForward = false
+let moveBackward = false
+let moveLeft = false
+let moveRight = false
+let canJump = false
 
-var onKeyDown = function (event) {
+let onKeyDown = function (event) {
   switch (event.keyCode) {
     case 38: // up
     case 87: // w
@@ -138,7 +131,7 @@ var onKeyDown = function (event) {
   }
 }
 
-var onKeyUp = function (event) {
+let onKeyUp = function (event) {
   switch (event.keyCode) {
     case 38: // up
     case 87: // w
@@ -169,6 +162,19 @@ for (let door of doorMeshes) scene.add(door)
 
 const raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10)
 
+function detectCollisionCubes(object1, object2) {
+  object1.updateMatrixWorld()
+  object2.updateMatrixWorld()
+
+  var box1 = object1.geometry.boundingBox.clone()
+  box1.applyMatrix4(object1.matrixWorld)
+
+  var box2 = object2.geometry.boundingBox.clone()
+  box2.applyMatrix4(object2.matrixWorld)
+
+  return box1.intersectsBox(box2)
+}
+
 function animate() {
   requestAnimationFrame(animate)
 
@@ -176,9 +182,7 @@ function animate() {
     raycaster.ray.origin.copy(controls.getObject().position)
     raycaster.ray.origin.y -= 10
 
-    var intersections = raycaster.intersectObjects(doorObjects)
-
-    console.log(intersections)
+    var intersections = raycaster.intersectObjects(objects)
 
     var onObject = intersections.length > 0
 
@@ -209,7 +213,7 @@ function animate() {
 
     if (controls.getObject().position.y < 10) {
       velocity.y = 0
-      controls.getObject().position.y = 4
+      controls.getObject().position.y = 10
 
       canJump = true
     }
@@ -218,36 +222,15 @@ function animate() {
   }
 }
 
-const btn = new THREE.Group()
-
-const btnGeom = new THREE.BoxGeometry(16, 8, 2)
-
-const btnMaterial = new THREE.MeshPhongMaterial({ color: 'yellow' })
-
-const btnTextGeom = new THREE.TextGeometry('Prinyat Uchastie', {
-  size: 1,
-  font: new THREE.Font(font),
-  height: 0.3,
-})
-
-const btnMesh = new THREE.Mesh(btnGeom, btnMaterial)
-
-btn.add(btnMesh)
-
-const textMesh = new THREE.Mesh(btnTextGeom, new THREE.MeshPhongMaterial({ color: 'black' }))
-
-textMesh.position.z = 1
-
-textMesh.position.x = -4
-
-btn.add(textMesh)
-
-btn.position.z = 100
-
-scene.add(btn)
-
 animate()
-
+/* 
 setTimeout(() => {
   visit('contest')
 }, 7500)
+ */
+
+function render() {
+  requestAnimationFrame(render)
+  renderer.render(scene, camera)
+}
+render()

@@ -28325,7 +28325,8 @@ vec4 envMapTexelToLinear(vec4 color) {
   const makeDoor = (label, position) => {
     const door = new Group();
     var doorGeometry = new BoxGeometry(6, 10, 3);
-    var basicMaterial = new MeshPhongMaterial({color: "#AC6C48"});
+    const texture = new TextureLoader().load("/doors/texture.jpg");
+    var basicMaterial = new MeshPhongMaterial({map: texture});
     var cube = new Mesh(doorGeometry, basicMaterial);
     door.add(cube);
     const textGeom = new TextGeometry(label, {
@@ -28475,7 +28476,4 @@ vec4 envMapTexelToLinear(vec4 color) {
   btn.position.z = 100;
   scene.add(btn);
   animate();
-  setTimeout(() => {
-    visit("clock");
-  }, 7500);
 })();
