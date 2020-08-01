@@ -1,6 +1,8 @@
 let main = document.querySelector('main')
 let index = Math.ceil(Math.random() * 12)
-console.log(index)
+
+scrollTo({ top: 0 })
+
 for (let i = 0; i < 12; i++) {
   if (index != i) {
     let div = document.createElement('div')
