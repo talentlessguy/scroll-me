@@ -2,7 +2,11 @@ let counter = 0
 
 const inc = () => {
   if (counter + 1 == 10) {
-    visit('dialog_army')
+    const btn = document.createElement('button')
+    btn.id = 'join'
+    btn.innerText = 'Принять участие'
+    btn.onclick = () => visit('dialog_army')
+    document.body.appendChild(btn)
   }
   counter++
 

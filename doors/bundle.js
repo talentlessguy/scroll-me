@@ -28469,7 +28469,7 @@ vec4 envMapTexelToLinear(vec4 color) {
   const btnMesh = new Mesh(btnGeom, btnMaterial);
   btn.add(btnMesh);
   const textMesh = new Mesh(btnTextGeom, new MeshPhongMaterial({color: "black"}));
-  textMesh.position.z = 2;
+  textMesh.position.z = 1;
   textMesh.position.x = -4;
   btn.add(textMesh);
   btn.position.z = 100;

@@ -6,7 +6,7 @@ for (let i = 0; i < 12; i++) {
     let div = document.createElement('div')
     let btn = document.createElement('button')
     btn.innerText = 'X'
-    div.innerText = `${i}`
+    div.innerText = `Syntax Error: line ${Math.floor(Math.random() * 40 * i)}`
     btn.onclick = (e) => {
       e.currentTarget.parentElement.remove()
     }
@@ -14,7 +14,7 @@ for (let i = 0; i < 12; i++) {
     main.appendChild(div)
   } else {
     let div = document.createElement('div')
-    div.innerText = `${i}`
+    div.innerText = `Syntax Error: line ${Math.floor(Math.random() * 40 * i)}`
     let btn = document.createElement('button')
     btn.onclick = () => {
       if (Array.from(main.children).length === 1) {
@@ -23,7 +23,7 @@ for (let i = 0; i < 12; i++) {
         let btn = document.createElement('button')
         btn.id = 'join'
         btn.innerText = 'Принять участие'
-        btn.onclick = () => visit('cube_faces')
+        btn.onclick = () => visit('doors')
         const lastDiv = document.querySelector('main div')
 
         lastDiv.appendChild(btn)
