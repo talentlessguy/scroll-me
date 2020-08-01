@@ -28,19 +28,31 @@ if (!getQueryVariable('w')) {
         const f = windows[0]
         const s = windows[1]
 
-        console.log(`First: ${f.screenY}`)
-        console.log(`Second: ${s.screnY}`)
+        if (f.screenX === s.screenX) {
+          if (!windows[0].document.getElementById('join')) {
+            const btn = document.createElement('button')
+            btn.innerText = 'Принять участие'
+            btn.id = 'join'
 
-        if (false) {
-          const btn = document.createElement('button')
-          btn.id = 'join'
-          btn.onclick = () => visit('flipped')
-          btn.disabled = true
-          document.body.prepend(btn)
+            btn.disabled = true
+            windows[0].document.body.prepend(btn)
 
-          setTimeout(() => {
-            btn.style.transform = `translate(100vh) rotate(40deg)`
-          }, 100)
+            setTimeout(() => {
+              btn.style.transform = `translate(calc((100vw - 250px) / 2 - 100px), 80vh)`
+
+              if (!windows[1].document.getElementById('join')) {
+                const btn2 = document.createElement('button')
+                btn2.innerText = 'Принять участие'
+
+                btn2.id = 'join'
+
+                btn.onclick = () => visit('flipped')
+                setTimeout(() => {
+                  windows[1].document.body.append(btn)
+                }, 1000)
+              }
+            }, 100)
+          }
         }
       })
     }
@@ -90,16 +102,31 @@ if (!getQueryVariable('w')) {
       document.querySelector('main').appendChild(metric)
     } else if (getQueryVariable('w') === '2') {
       // X: 960, Y: 600
-      const tube = document.createElement('div')
+      if (!document.querySelector('main').firstChild) {
+        const tube = document.createElement('div')
 
-      tube.id = 'tube'
+        tube.id = 'tube'
 
-      const tubeHead = document.createElement('div')
+        const tubeHead = document.createElement('div')
 
-      tubeHead.id = 'tube_head'
+        tubeHead.id = 'tube_head'
 
-      document.querySelector('main').appendChild(tube)
-      document.querySelector('main').appendChild(tubeHead)
+        document.querySelector('main').appendChild(tube)
+        document.querySelector('main').appendChild(tubeHead)
+      }
+
+      let metric = document.querySelector('#metric')
+
+      if (!metric) {
+        metric = document.createElement('div')
+        metric.id = 'metric'
+      }
+
+      metric.innerHTML = `
+      X: ${newX}
+      Y: ${newY}
+      `
+      document.querySelector('main').appendChild(metric)
     }
   })
 }

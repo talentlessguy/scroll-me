@@ -10,7 +10,7 @@ let cmdCount = 0
 
 let expr = ''
 
-a // 63 * 2
+// 63 * 2
 
 for (const key of keys) {
   const btn = document.createElement('button')

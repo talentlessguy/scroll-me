@@ -9,7 +9,6 @@
 }
 
 main {
-  padding: 1rem;
   padding-bottom: 0;
   display: flex;
   justify-content: center;
@@ -22,6 +21,7 @@ main {
   background-color: green;
   border: 5px solid black;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+  z-index: 3;
 }
 
 body {
@@ -38,4 +38,6 @@ body {
 
 #join {
   transition: 0.6s;
+  transform: translateX(calc((100vw - 250px) / 2 - 100px));
+  font-size: 1rem !important;
 }
