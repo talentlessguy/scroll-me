@@ -41,3 +41,12 @@ main > div {
 #learn_more {
   margin-top: 100px;
 }
+
+main span {
+  margin-top: 25px;
+  text-align: center;
+  font-weight: 300;
+  width: 60vw;
+  font-size: 30px;
+  line-height: 40px;
+}
