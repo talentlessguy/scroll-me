@@ -1,7 +1,7 @@
 import { createServer } from 'http'
 import serve from 'serve-handler'
 
-const PORT = 3000
+const PORT = parseInt(process.env.PORT) || 3000
 
 createServer((req, res) => {
   serve(req, res, {

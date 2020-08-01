@@ -28,6 +28,9 @@ if (!getQueryVariable('w')) {
         const f = windows[0]
         const s = windows[1]
 
+        console.log(`First: ${f.screenY}`)
+        console.log(`Second: ${s.screnY}`)
+
         if (false) {
           const btn = document.createElement('button')
           btn.id = 'join'
