@@ -32,7 +32,7 @@ for (const key of keys) {
         join.innerText = 'Принять участие'
 
         join.onclick = () => {
-          visit('windows_tubes')
+          visit('clockq')
         }
 
         document.body.appendChild(join)
