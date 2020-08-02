@@ -3,7 +3,12 @@
   top: 0;
   left: 0;
   z-index: -1;
-  width: 100vw;
+  width: 94vw;
+  margin-left: 3.5vw;
+}
+
+video {
+  width: 96vw;
 }
 
 body {
@@ -17,6 +22,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 20px !important;
+  width: 90%;
 }
 
 video {
