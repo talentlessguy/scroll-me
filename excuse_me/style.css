@@ -1,0 +1,44 @@
+body {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
+body > div {
+  width: 512px;
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  flex-direction: inherit;
+}
+
+body > div > div {
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  flex-direction: row;
+}
+
+input {
+  width: 100%;
+}
+
+audio {
+  width: calc(512px - 3rem - 2 * 0.5rem);
+}
+
+input {
+  margin-top: 1rem;
+}
+
+body > div > div > span {
+  padding: 1rem;
+}
+
+#c {
+  margin: 1rem 0;
+}

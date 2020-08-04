@@ -49,7 +49,7 @@ if (!getQueryVariable('w')) {
 
                 btn2.id = 'join'
 
-                btn2.onclick = () => visit('final')
+                btn2.onclick = () => visit('excuse_me')
 
                 btn2.style.transition = '2s'
                 btn2.style.transform = `translate(0, 120vh)`
