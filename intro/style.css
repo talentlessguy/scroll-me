@@ -49,3 +49,11 @@ main span {
   font-size: 30px;
   line-height: 40px;
 }
+
+audio::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
+audio::-webkit-media-controls-volume-slider {
+  display: none !important;
+}

@@ -1,7 +1,8 @@
 (() => {
   // app.ts
   const context = new AudioContext();
-  const video = context.createMediaElementSource(document.getElementById("v"));
+  const el = document.getElementById("v");
+  const video = context.createMediaElementSource(el);
   const analyser = context.createAnalyser();
   analyser.smoothingTimeConstant = 0.9;
   analyser.fftSize = 512;
@@ -20,6 +21,7 @@
       max = Math.max(max, a);
     }
     average /= array.length;
+    document.getElementById("meter").textContent = average.toFixed(0);
     ctx.fillStyle = "red";
     ctx.fillRect(0, 0, average * 20, 50);
     ctx.fillStyle = "blue";
@@ -34,8 +36,8 @@
   btn.onclick = () => visit("final");
   btn.textContent = "Принять участие";
   video.mediaElement.onplaying = () => {
-    input.onchange = (e) => {
-      const val = e.currentTarget.value;
+    input.onchange = () => {
+      const val = input.value;
       if (parseInt(val) >= 27 && parseInt(val) <= 29) {
         document.body.appendChild(btn);
       } else {
@@ -46,4 +48,6 @@
       }
     };
   };
+  const play = document.getElementById("play");
+  play.onclick = () => el.play();
 })();

@@ -9,13 +9,17 @@
   </head>
   <body>
     <div>
+      <span id="meter">0</span>
       <canvas id="c" width="512" height="64"></canvas>
+
+      <button id="play">▶</button>
+      <audio src="/excuse_me/audio.mp3" id="v"></audio>
+
       <div>
         <span>0</span>
-        <audio src="/excuse_me/audio.mp3" id="v" controls></audio>
+        <input type="range" min="0" max="30" value="0" />
         <span>30</span>
       </div>
-      <input type="range" min="0" max="30" value="0" />
     </div>
 
     <script src="/global.js"></script>

@@ -1,5 +1,6 @@
 const context = new AudioContext()
-const video = context.createMediaElementSource(document.getElementById('v') as HTMLMediaElement)
+const el = document.getElementById('v') as HTMLMediaElement
+const video = context.createMediaElementSource(el)
 const analyser = context.createAnalyser() //we create an analyser
 analyser.smoothingTimeConstant = 0.9
 analyser.fftSize = 512 //the total samples are half the fft size.
@@ -23,6 +24,8 @@ function draw() {
 
   average /= array.length
 
+  document.getElementById('meter').textContent = average.toFixed(0)
+
   ctx.fillStyle = 'red'
   ctx.fillRect(0, 0, average * 20, 50)
   ctx.fillStyle = 'blue'
@@ -45,8 +48,8 @@ btn.onclick = () => visit('final')
 btn.textContent = 'Принять участие'
 
 video.mediaElement.onplaying = () => {
-  input.onchange = (e) => {
-    const val = (e.currentTarget as HTMLInputElement).value
+  input.onchange = () => {
+    const val = (input as HTMLInputElement).value
 
     if (parseInt(val) >= 27 && parseInt(val) <= 29) {
       document.body.appendChild(btn)
@@ -57,3 +60,7 @@ video.mediaElement.onplaying = () => {
     }
   }
 }
+
+const play = document.getElementById('play')
+
+play.onclick = () => el.play()

@@ -23,16 +23,13 @@ body > div > div {
   flex-direction: row;
 }
 
-input {
-  width: 100%;
-}
-
 audio {
-  width: calc(512px - 3rem - 2 * 0.5rem);
+  width: 512px;
+  margin-bottom: 1rem;
 }
 
 input {
-  margin-top: 1rem;
+  width: calc(512px - 3rem - 2 * 0.5rem);
 }
 
 body > div > div > span {
